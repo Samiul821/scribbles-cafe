@@ -4,11 +4,18 @@ import Blogs from "./components/Blogs/Blogs";
 
 const App = () => {
   const [bookmarkred, setBookmarkred] = useState([]);
+  const [readingCount, setReadingCount] = useState(0);
 
 
   const handleBookMark = (blog) => {
-    setBookmarkred([...bookmarkred, blog])
+    setBookmarkred([...bookmarkred, blog]);
   }
+
+  const handleMarkAsRead = (time) => {
+    setReadingCount(readingCount + time);
+  }
+
+  console.log(readingCount);
 
   console.log(bookmarkred);
 
@@ -18,11 +25,11 @@ const App = () => {
 
       <div className="main-container flex text-center">
         <div className="left-container w-[70%]">
-          <Blogs handleBookMark={handleBookMark}></Blogs>
+          <Blogs handleBookMark={handleBookMark} handleMarkAsRead={handleMarkAsRead}></Blogs>
         </div>
         <div className="right-container w-[30%] text-center">
-          <h1>Reading time : 0</h1>
-          <h1>bookmarkred count: 0</h1>
+          <h1>Reading time : {readingCount}</h1>
+          <h1>bookmarkred count: {bookmarkred.length}</h1>
 
           {
              bookmarkred.map((marked) => <p>{marked.title}</p>)
