@@ -14,9 +14,9 @@ const Blogs = ({handleBookMark, handleMarkAsRead}) => {
 
   return (
     <div>
-      <h1 className="text-3xl">Total: {blogs.length}</h1>
+      <h1 className="text-3xl font-semibold text-start ml-5">Blogs: {blogs.length}</h1>
 
-      <div className="all-blgos grid grid-cols-2">
+      <div className="all-blgos grid grid-cols-1 lg:grid-cols-2">
         {
           blogs.map((blog) => <Blog key={blog.id} blog={blog} handleBookMark={handleBookMark} handleMarkAsRead={handleMarkAsRead}></Blog>)
         }

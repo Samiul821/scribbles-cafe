@@ -5,32 +5,42 @@ const Blog = ({ blog, handleBookMark, handleMarkAsRead }) => {
  
 //   console.log(blog);
   return (
-    <div className="m-2">
+    <div className="m-2 w-[90%] mx-auto">
       {/* <h1>{blog.id}</h1> */}
-      <div className="card bg-base-100 w-96 shadow-sm">
+      <div className="rounded-2xl bg-base-100  shadow-sm">
         <figure>
-          <img src={blog.cover} alt="cover" />
+          <img className="rounded-t-2xl" src={blog.cover} alt="cover" />
         </figure>
         <div className="card-body">
-          <div className="author flex justify-around items-center">
-            <h3>{blog.author}</h3>
-            <img className="w-16" src={blog.author_img} alt="" />
-            <button onClick={() => handleBookMark(blog)} className="cursor-pointer">
+          <div className="author flex justify-between items-center">
+            <div className="flex gap-2 items-center">
+              <img className="w-10" src={blog.author_img} alt="" />
+              <div className="text-start">
+                <h3 className="text-lg font-medium">{blog.author}</h3>
+                <p className="text-lg">{blog.posted_date}</p>
+              </div>
+            </div>
+            <button
+              onClick={() => handleBookMark(blog)}
+              className="cursor-pointer"
+            >
               <FaBookmark size={25} />
             </button>
           </div>
-          <h2 className="card-title">{blog.title}</h2>
-          <p>
-            A card component has a figure, a body part, and inside body there
-            are title and actions parts
-          </p>
-          <div className="flex">
+          <h2 className="text-start card-title">{blog.title}</h2>
+          <div className="text-start text-purple-800 underline">
             {blog.hashtags.map((has) => (
-              <p>{has}</p>
+              <p key={has}>#{has}</p>
             ))}
           </div>
+          
           <div className="card-actions justify-end">
-            <button onClick={() => handleMarkAsRead(blog.reading_time)} className="btn btn-primary">mark as read</button>
+            <button
+              onClick={() => handleMarkAsRead(blog.reading_time, blog.id)}
+              className="btn btn-primary"
+            >
+              mark as read
+            </button>
           </div>
         </div>
       </div>

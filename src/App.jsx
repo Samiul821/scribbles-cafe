@@ -11,28 +11,35 @@ const App = () => {
     setBookmarkred([...bookmarkred, blog]);
   }
 
-  const handleMarkAsRead = (time) => {
+  const handleMarkAsRead = (time,id) => {
     setReadingCount(readingCount + time);
+    handleRemvoeFromBookmark(id)
   }
 
-  console.log(readingCount);
+  // console.log(readingCount);
 
-  console.log(bookmarkred);
+  // console.log(bookmarkred);
+
+  const handleRemvoeFromBookmark = (id) => {
+    const remainingBookMark = bookmarkred.filter((mark) => mark.id !== id);
+    console.log(remainingBookMark);
+  }
 
   return (
     <>
       <Navbar></Navbar>
 
-      <div className="main-container flex text-center">
-        <div className="left-container w-[70%]">
+      <div className="main-container flex text-center w-[80%] mx-auto gap-3 my-6">
+        <div className="left-container w-[70%] shadow rounded-2xl py-3">
           <Blogs handleBookMark={handleBookMark} handleMarkAsRead={handleMarkAsRead}></Blogs>
         </div>
-        <div className="right-container w-[30%] text-center">
-          <h1>Reading time : {readingCount}</h1>
-          <h1>bookmarkred count: {bookmarkred.length}</h1>
+        <div className="right-container text-start bg-gray-300 w-[30%] px-4 py-2 rounded-2xl">
+          <h1 className="text-xl font-medium">Reading time : {readingCount}</h1>
+          <h1 className="text-lg">Bookmarkred Count: {bookmarkred.length}</h1>
 
           {
-             bookmarkred.map((marked) => <p>{marked.title}</p>)
+             bookmarkred.map((marked) => <p
+             key={marked.id} className=" bg-gray-200 shadow mt-2 rounded-xl p-3">{marked.title}</p>)
           }
         </div>
       </div>
